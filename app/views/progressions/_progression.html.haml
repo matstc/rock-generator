@@ -38,7 +38,7 @@
       console.log(state, progress);
     },
     onsuccess: function() {
-      var progression = [ #{raw @progression.map{|chord| "'#{chord[0]}2'"}.join(",")} ];
+      var progression = [ #{raw progression.map{|chord| "'#{chord[0]}2'"}.join(",")} ];
       MIDI.setVolume(0, 100);
       PLAYER.reset();
       PLAYER.use(progression);

@@ -1,5 +1,5 @@
 class RockProgressionGenerator
-  MAIN_KEYS = ['C', 'D', 'E', 'F', 'G', 'A'].flat_map {|k|[k,"#{k}m"]}
+  MAIN_KEYS = ['C', 'D', 'E', 'F', 'G', 'A']
 
   PROGRESSIONS = [
     ['I', 'I7', 'IV', 'IV/V'],

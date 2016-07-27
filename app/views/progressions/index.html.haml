@@ -1,9 +1,9 @@
 #progression
-  = render 'progression', progression: @progression
+  = render 'progression', progression: @progression.chords
 
 %footer
   %hr
-  %p= "This is a #{@numerals.join(" – ")} progression in the key of #{@key}."
+  %p= "This is a #{@progression.numerals.join(" – ")} progression in the key of #{@progression.key}."
   %p
     Like this app?
     = link_to "Here's the code.", 'https://github.com/matstc/rock-generator'
