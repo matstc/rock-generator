@@ -1,5 +1,3 @@
-This app generates upper-structure triads.
+This app generates rock chord progressions.
 
-Try it out at [ust-generator.herokuapp.com](http://ust-generator.herokuapp.com/).
-
-![](https://raw.githubusercontent.com/matstc/ust-generator/master/app/assets/images/ust-screenshot.png)
+Try it out at [rock-generator.herokuapp.com](http://rock-generator.herokuapp.com/).
