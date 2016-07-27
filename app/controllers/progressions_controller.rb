@@ -1,5 +1,8 @@
 class ProgressionsController < ApplicationController
   def index
-    @progression = RockProgressionGenerator.new.sample * 4
+    generator = RockProgressionGenerator.new
+    @key = generator.sample_key
+    @numerals = generator.sample_progression
+    @progression = generator.translate(@numerals, @key) * 4
   end
 end

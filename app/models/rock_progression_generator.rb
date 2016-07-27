@@ -12,9 +12,16 @@ class RockProgressionGenerator
     ['vi', 'IV', 'ii', 'V']
   ]
 
-  def sample
-    key = MAIN_KEYS.sample
-    PROGRESSIONS.sample.map {|s| Chord.parse(s)}.map {|c| c.in_the_key_of(key)}
+  def sample_progression
+    PROGRESSIONS.sample
+  end
+
+  def sample_key
+    MAIN_KEYS.sample
+  end
+
+  def translate progression, key
+    progression.map {|s| Chord.parse(s)}.map {|c| c.in_the_key_of(key)}
   end
 
 end
