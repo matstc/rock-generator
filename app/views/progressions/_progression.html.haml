@@ -1,0 +1,46 @@
+.action-bar.clearfix
+  %button.btn.btn-default(data-toggle='collapse' data-target='.sidebar')
+    %span.glyphicon.glyphicon-th-list
+
+  .btn-subgroup
+    = button_tag '', onclick: 'PLAYER.toggleAudio(event);', class: 'btn btn-default', style: 'display:none;' do
+      %span.glyphicon.glyphicon-play
+    = button_tag '', onclick: 'PLAYER.toggleAudio(event);', class: 'btn btn-default', style: 'display:none;' do
+      %span.glyphicon.glyphicon-pause
+  .btn-subgroup
+    %span
+      %span.bpm 120
+      BPM
+    .btn-group
+      = button_tag '', onclick: 'PLAYER.speedDown(event);', class: 'btn btn-default' do
+        %span.glyphicon.glyphicon-minus
+      = button_tag '', onclick: 'PLAYER.speedUp(event);', class: 'btn btn-default' do
+        %span.glyphicon.glyphicon-plus
+  .btn-subgroup
+    .btn-group
+      = button_tag '', onclick: 'generate(); return false;', class: 'btn btn-default' do
+        %span.glyphicon.glyphicon-refresh
+      = button_tag 'Fullscreen', onclick: 'toggleFullScreen(); return false;', class: 'btn btn-default' do
+        %span.glyphicon.glyphicon-fullscreen
+
+%table.progression
+  - progression.in_groups_of(4).each do |four_chords|
+    %tr
+      - four_chords.each do |chord|
+        %td{onclick: "PLAYER.goTo(#{progression.index(chord)});"}= fix_letter_spacing(chord)
+
+
+:javascript
+  MIDI.loadPlugin({
+    soundfontUrl: "/assets/",
+    instrument: "acoustic_grand_piano",
+    onprogress: function(state, progress) {
+      console.log(state, progress);
+    },
+    onsuccess: function() {
+      var progression = [ #{raw @progression.map{|chord| "'#{chord[0]}2'"}.join(",")} ];
+      MIDI.setVolume(0, 100);
+      PLAYER.reset();
+      PLAYER.use(progression);
+    }
+  });

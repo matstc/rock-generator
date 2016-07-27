@@ -1,0 +1,5 @@
+var site = $("#progression");
+site.hide();
+site.html("<%= j render('progression', progression:@progression)%>");
+site.show();
+
