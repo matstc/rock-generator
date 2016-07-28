@@ -1,7 +1,28 @@
-.action-bar.clearfix
-  %button.btn.btn-default(data-toggle='collapse' data-target='.sidebar')
-    %span.glyphicon.glyphicon-th-list
+.modal.info-modal.fade(tabindex="-1" role="dialog")
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button(type="button" class="close" data-dismiss="modal" aria-label="Close")
+          %span(aria-hidden="true") &times;
+        %h2 Rock Generator
+      .modal-body
+        %p This app generates the following progressions:
+        %ul
+          - RockProgressionGenerator::PROGRESSIONS.each do |progression|
+            %li= progression.join(" – ")
 
+        %p Using the following keys:
+        %ul
+          - RockProgressionGenerator::MAIN_KEYS.each do |key|
+            %li= key
+
+        %footer
+          %hr
+          %p
+            Like this app?
+            = link_to "Here's the code.", 'https://github.com/matstc/rock-generator'
+
+.action-bar.clearfix
   .btn-subgroup
     = button_tag '', onclick: 'PLAYER.toggleAudio(event);', class: 'btn btn-default', style: 'display:none;' do
       %span.glyphicon.glyphicon-play
@@ -20,6 +41,8 @@
     .btn-group
       = button_tag '', onclick: 'generate(); return false;', class: 'btn btn-default' do
         %span.glyphicon.glyphicon-refresh
+      = button_tag '', 'data-toggle' => "modal", 'data-target' => ".info-modal", 'class' => 'btn btn-default' do
+        %span.glyphicon.glyphicon-info-sign
       = button_tag 'Fullscreen', onclick: 'toggleFullScreen(); return false;', class: 'btn btn-default' do
         %span.glyphicon.glyphicon-fullscreen
 
